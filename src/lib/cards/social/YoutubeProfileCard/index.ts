@@ -2,14 +2,28 @@ import type { CardDefinition } from '../../types';
 import CreateYoutubeProfileCardModal from './CreateYoutubeProfileCardModal.svelte';
 import YoutubeProfileCard from './YoutubeProfileCard.svelte';
 import type { YoutubeProfileData } from './types';
+import { fetchYoutubeProfile } from './api.remote';
 
 export const YoutubeProfileCardDefinition = {
 	type: 'youtubeProfile',
 	contentComponent: YoutubeProfileCard,
 	creationModalComponent: CreateYoutubeProfileCardModal,
 
+	loadData: async (items) => {
+		const youtubeData: Record<string, YoutubeProfileData> = {};
+		for (const item of items) {
+			const channelUrl = item.cardData.url;
+			if (!channelUrl) continue;
+			try {
+				const data = await fetchYoutubeProfile(channelUrl);
+				if (data) youtubeData[channelUrl] = data;
+			} catch (error) {
+				console.error('Failed to fetch YouTube profile data:', error);
+			}
+		}
+		return youtubeData;
+	},
 	loadDataServer: async (items) => {
-		const { fetchYoutubeProfile } = await import('./api');
 		const youtubeData: Record<string, YoutubeProfileData> = {};
 		for (const item of items) {
 			const channelUrl = item.cardData.url;
