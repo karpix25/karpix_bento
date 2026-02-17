@@ -1,10 +1,10 @@
 <script lang="ts">
-	import { Button, Input, Modal } from '@foxui/core';
+	import { Button, Input, Subheading } from '@foxui/core';
+	import Modal from '$lib/components/modal/Modal.svelte';
 	import type { CreationModalComponentProps } from '../../types';
 
-	let { item, oncreate, oncancel }: CreationModalComponentProps = $props();
+	let { item = $bindable(), oncreate, oncancel }: CreationModalComponentProps = $props();
 
-	// svelte-ignore state_referenced_locally
 	let url = $state(item.cardData.url || '');
 
 	function handleCreate() {
@@ -23,11 +23,8 @@
 <Modal open={true} onOpenChange={(open) => !open && oncancel()} title="Add YouTube Profile">
 	<div class="flex flex-col gap-4 py-4">
 		<div class="flex flex-col gap-2">
-			<label for="url" class="text-base-600 dark:text-base-400 text-sm font-medium">
-				YouTube Channel URL
-			</label>
+			<Subheading>YouTube Channel URL</Subheading>
 			<Input
-				id="url"
 				placeholder="https://www.youtube.com/@handle"
 				bind:value={url}
 				onkeydown={handleKeydown}
