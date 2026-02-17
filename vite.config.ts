@@ -14,5 +14,8 @@ export default defineConfig({
 		rollupOptions: {
 			external: ['cloudflare:sockets']
 		}
+	},
+	ssr: {
+		external: ['@ethercorps/sveltekit-og', '@resvg/resvg-js']
 	}
 });
