@@ -1,0 +1,42 @@
+{
+	"page": "blento.self",
+	"did": "did:web:local",
+	"handle": "human",
+	"cards": [
+		{
+			"id": "welcome-card",
+			"x": 0,
+			"y": 0,
+			"w": 3,
+			"h": 3,
+			"mobileX": 0,
+			"mobileY": 0,
+			"mobileW": 4,
+			"mobileH": 4,
+			"cardType": "text",
+			"cardData": {
+				"content": "<h1>Welcome to my website!</h1><p>Edit me locally.</p>"
+			},
+			"page": "blento.self"
+		}
+	],
+	"publication": {
+		"name": "Local Persis moretence Verified!My Personal Site",
+		"description": "Hosted locally without Bluesky.",
+		"preferences": {
+			"hideProfileSection": false,
+			"accentColor": "#3b82f6",
+			"baseColor": "#ffffff",
+			"editedOn": 0
+		}
+	},
+	"profile": {
+		"did": "did:web:local",
+		"handle": "human",
+		"displayName": "My Name",
+		"description": "My bio goes here.",
+		"avatar": ""
+	},
+	"version": 1,
+	"updatedAt": 1771219575332
+}

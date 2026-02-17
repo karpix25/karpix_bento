@@ -1,0 +1,36 @@
+<script lang="ts">
+	import '../app.css';
+
+	import { Tooltip } from 'bits-ui';
+	import { ThemeToggle, Toaster, toast } from '@foxui/core';
+	import { onMount } from 'svelte';
+	import { initClient } from '$lib/atproto';
+	import YoutubeVideoPlayer, { videoPlayer } from '$lib/components/YoutubeVideoPlayer.svelte';
+	import { page } from '$app/state';
+	import { goto } from '$app/navigation';
+	import LoginModal from '$lib/atproto/UI/LoginModal.svelte';
+
+	let { children, data } = $props();
+
+	const errorMessages: Record<string, (params: URLSearchParams) => string> = {
+		handle_not_found: (p) => `Handle ${p.get('handle') ?? ''} not found!`
+	};
+
+	onMount(() => {
+		initClient({ customDomain: data.customDomain });
+	});
+</script>
+
+<Tooltip.Provider delayDuration={300}>
+	{@render children()}
+</Tooltip.Provider>
+
+<ThemeToggle class="fixed top-2 left-2 z-10" />
+
+<Toaster />
+
+{#if videoPlayer.id}
+	<YoutubeVideoPlayer />
+{/if}
+
+<LoginModal />

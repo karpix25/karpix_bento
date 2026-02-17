@@ -1,0 +1,16 @@
+services:
+  app:
+    build: .
+    image: blento:latest
+    container_name: blento
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./src/lib/data.json:/app/src/lib/data.json
+    environment:
+      - PUBLIC_HANDLE=local.test
+      - PUBLIC_IS_SELFHOSTED=true
+      - PUBLIC_DOMAIN=http://localhost:3000
+      - PUBLIC_LOCAL_STORAGE=true
+      - ORIGIN=http://localhost:3000
+    restart: always
