@@ -33,9 +33,7 @@
 				onkeydown={handleKeydown}
 				autofocus
 			/>
-			<p class="text-base-500 text-xs">
-				Paste a link to your channel, e.g. youtube.com/@yourname
-			</p>
+			<p class="text-base-500 text-xs">Paste a link to your channel, e.g. youtube.com/@yourname</p>
 		</div>
 
 		<div class="flex justify-end gap-3 pt-2">

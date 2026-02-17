@@ -19,7 +19,7 @@ const NAMESPACE_TTL = {
 export type CacheNamespace = keyof typeof NAMESPACE_TTL;
 
 export class CacheService {
-	constructor(private kv: KVNamespace) { }
+	constructor(private kv: KVNamespace) {}
 
 	// === Generic namespaced operations ===
 

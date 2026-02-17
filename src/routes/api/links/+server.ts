@@ -23,4 +23,4 @@ export const GET: RequestHandler = async ({ url }) => {
 		console.error('Error fetching link preview:', error);
 		return json({ error: 'Failed to fetch link preview' }, { status: 500 });
 	}
-}
+};
