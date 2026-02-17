@@ -4,6 +4,7 @@
 
 	let { item, oncreate, oncancel }: CreationModalComponentProps = $props();
 
+	// svelte-ignore state_referenced_locally
 	let url = $state(item.cardData.url || '');
 
 	function handleCreate() {

@@ -1,8 +1,14 @@
+```
+<script lang="ts">
 	import type { ContentComponentProps } from '../../types';
 	import type { YoutubeProfileData } from './api.server';
 	import { getAdditionalUserData } from '$lib/website/context';
+	import type { CreationModalComponentProps } from '$lib/website/components/creation-modal/types';
 
-	let { item }: ContentComponentProps = $props();
+	let { item, oncreate, oncancel }: CreationModalComponentProps = $props();
+
+	// svelte-ignore state_referenced_locally
+	let url = $state(item.cardData.url || '');
 
 	const additionalData = getAdditionalUserData() as any;
 	const profile = $derived(additionalData[item.cardType]?.[item.cardData.url] || null);
