@@ -1,7 +1,8 @@
 import { json } from '@sveltejs/kit';
 import { getLinkPreview } from 'link-preview-js';
+import type { RequestHandler } from './$types';
 
-export async function GET({ url }) {
+export const GET: RequestHandler = async ({ url }) => {
 	const link = url.searchParams.get('link');
 	if (!link) {
 		return json({ error: 'No link provided' }, { status: 400 });
@@ -15,20 +16,7 @@ export async function GET({ url }) {
 
 	try {
 		const data = await getLinkPreview(link, {
-			followRedirects: `manual`,
-			handleRedirects: (baseURL: string, forwardedURL: string) => {
-				const urlObj = new URL(baseURL);
-				const forwardedURLObj = new URL(forwardedURL);
-				if (
-					forwardedURLObj.hostname === urlObj.hostname ||
-					forwardedURLObj.hostname === 'www.' + urlObj.hostname ||
-					'www.' + forwardedURLObj.hostname === urlObj.hostname
-				) {
-					return true;
-				} else {
-					return false;
-				}
-			}
+			followRedirects: 'follow'
 		});
 		return json(data);
 	} catch (error) {

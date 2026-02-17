@@ -40,5 +40,14 @@ export async function getActor({
 		actor = undefined;
 	}
 
-	return isHandle(actor) ? await resolveHandle({ handle: actor }) : actor;
+	if (isHandle(actor)) {
+		const resolved = await resolveHandle({ handle: actor });
+		if (resolved) return resolved;
+		if (publicEnv.PUBLIC_IS_SELFHOSTED === 'true' || publicEnv.PUBLIC_LOCAL_STORAGE === 'true') {
+			return 'did:web:local';
+		}
+		return undefined;
+	}
+
+	return actor;
 }
