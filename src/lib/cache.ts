@@ -12,13 +12,14 @@ const NAMESPACE_TTL = {
 	lastfm: 60 * 60, // 1 hour (default, overridable per-put)
 	npmx: 60 * 60 * 12, // 12 hours
 	profile: 60 * 60 * 24, // 24 hours
+	youtube: 60 * 60 * 24, // 24 hours
 	meta: 0 // no auto-expiry
 } as const;
 
 export type CacheNamespace = keyof typeof NAMESPACE_TTL;
 
 export class CacheService {
-	constructor(private kv: KVNamespace) {}
+	constructor(private kv: KVNamespace) { }
 
 	// === Generic namespaced operations ===
 
