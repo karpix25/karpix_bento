@@ -52,8 +52,8 @@ export async function initClient(options?: { customDomain?: string }) {
 
 	let client_id = dev
 		? `http://localhost` +
-		`?redirect_uri=${encodeURIComponent('http://127.0.0.1:5179' + REDIRECT_PATH)}` +
-		`&scope=${encodeURIComponent(metadata.scope)}`
+			`?redirect_uri=${encodeURIComponent('http://127.0.0.1:5179' + REDIRECT_PATH)}` +
+			`&scope=${encodeURIComponent(metadata.scope)}`
 		: metadata.client_id;
 
 	const handleResolver = new CompositeHandleResolver({

@@ -4,7 +4,7 @@ services:
     image: blento:latest
     container_name: blento
     ports:
-      - "3000:3000"
+      - '3000:3000'
     volumes:
       - ./src/lib/data.json:/app/src/lib/data.json
     environment:
