@@ -4,11 +4,8 @@
 
 	let { item }: ContentComponentProps = $props();
 
-	const additionalData = getAdditionalUserData();
-	const profile = $derived(
-		(additionalData[item.cardType] as Record<string, YoutubeProfileData>)?.[item.cardData.url] ||
-			null
-	);
+	const additionalData = getAdditionalUserData() as any;
+	const profile = $derived(additionalData[item.cardType]?.[item.cardData.url] || null);
 </script>
 
 <a
