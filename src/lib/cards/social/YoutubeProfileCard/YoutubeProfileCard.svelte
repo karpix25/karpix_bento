@@ -6,7 +6,7 @@
 	let { item }: ContentComponentProps = $props();
 
 	const additionalData = getAdditionalUserData() as any;
-	const profile = $derived(additionalData[item.cardType]?.[item.cardData.url] || null);
+	const profile = $derived(additionalData?.[item.cardType]?.[item.cardData.url] || null);
 </script>
 
 <a
